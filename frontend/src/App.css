@@ -1,0 +1,96 @@
+/* CameraCapture.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #b1dce2;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 600px;
+  margin: auto;
+}
+
+.video-container {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+video {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+}
+
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.loading-message {
+  color: #007bff;
+  font-size: 18px;
+}
+
+.emotion-display {
+  font-size: 20px;
+  margin: 20px 0;
+  color: #333;
+}
+
+audio {
+  width: 100%;
+  margin-top: 15px;
+}
+
+
+.camera-feed, .camera-capture {
+  /* Set to the desired width or max-width, maintain aspect ratio */
+  width: 100%;
+  max-width: 640px; /* Adjust as needed */
+  position: relative; /* For positioning the canvas over the video */
+}
+
+video, canvas {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+}
+
+.bounding-box {
+  border: 2px solid yellow; /* Use a bright color for visibility */
+  position: absolute;
+  pointer-events: none; /* Ensure the box doesn't interfere with clicks */
+}
