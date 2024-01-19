@@ -23,12 +23,14 @@ function CameraCapture() {
       }
     } catch (err) {
       console.error("Error starting camera: ", err);
+      alert('Could not access the camera. Please ensure you have a camera connected and have granted access.');
     }
   };
 
   const takePhoto = () => {
-    if (!videoRef.current || !canvasRef.current) {
-      console.error('Video or canvas element is not found.');
+    if (!videoRef.current || !canvasRef.current || !videoRef.current.srcObject) {
+      console.error('No video stream found. Please connect a camera.');
+      alert('No video stream found. Please connect a camera.');
       return;
     }
     setLoading(true);
@@ -45,10 +47,10 @@ function CameraCapture() {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setLoading(true); // Start loading
-      setBoundingBox(null); // Clear previous bounding box
-      setPhotoTaken(false); // Reset photo taken state
-      displayImage(file); // Display the uploaded file
+      setLoading(true);
+      setBoundingBox(null);
+      setPhotoTaken(false);
+      displayImage(file);
     }
   };
 
@@ -80,7 +82,7 @@ function CameraCapture() {
       alert('Failed to analyze the photo. Please try again.');
     })
     .finally(() => {
-      setLoading(false); // Ensure we stop loading regardless of the outcome
+      setLoading(false);
     });
   };
 
@@ -96,7 +98,6 @@ function CameraCapture() {
           canvas.height = img.height;
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           ctx.drawImage(img, 0, 0);
-          // Convert the displayed image to a blob and send it
           canvas.toBlob(blob => sendPhoto(blob), 'image/jpeg');
         }
       };
@@ -135,7 +136,7 @@ function CameraCapture() {
     setBoundingBox(null);
     setEmotion('');
     setAudioUrl('');
-    setLoading(false); // Make sure to stop any loading indicators
+    setLoading(false);
     startCamera();
   };
 
@@ -153,7 +154,7 @@ function CameraCapture() {
       {!photoTaken && (
         <>
           <button onClick={takePhoto}>Take Photo</button>
-          <button onClick={handleUploadButtonClick} className="upload-button">Upload Photo</button>
+          <button onClick={handleUploadButtonClick}>Upload Photo</button>
           <input 
             type="file" 
             accept="image/*" 
