@@ -39,7 +39,7 @@ def analyze_image():
             
             # Use the current timestamp as a unique identifier for the audio file
             timestamp = int(time.time())
-            audio_filename = f'polly_audio_{timestamp}.mp3'
+            audio_filename = f'polly_audio.mp3'
             audio_filepath = os.path.join(app.static_folder, audio_filename)
             
             # Write the synthesized speech to the audio file
@@ -65,7 +65,7 @@ def analyze_image():
         
         # Use the current timestamp as a unique identifier for the audio file
         timestamp = int(time.time())
-        audio_filename = f'polly_audio_{timestamp}.mp3'
+        audio_filename = f'polly_audio.mp3'
         audio_filepath = os.path.join(app.static_folder, audio_filename)
         
         # Write the synthesized speech to the audio file
